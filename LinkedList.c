@@ -98,11 +98,30 @@ void deleteend()
         while(temp->next->next!=NULL)
             temp = temp->next;
         deleted_item = temp->next->data;
-        printf("DELETED ITEM = %d", deleted_item);
+        printf("Deleted item : %d", deleted_item);
         temp->next =NULL;
 
     }
 
+}
+
+void deletefirst()
+{
+    int deleted_item;
+    if(head == NULL)
+        printf("NO ELEMENTS PRESENT TO BE DELETED");
+    else if(head->next==NULL)
+    {
+        deleted_item = head->data;
+        head = NULL;
+        printf("Deleted item : %d", deleted_item);
+    }
+    else
+    {
+        deleted_item = head->data;
+        head = head->next;
+        printf("Deleted item : %d", deleted_item);
+    }
 }
 
 
@@ -125,7 +144,7 @@ int main()
 {
     int ch;
     do{
-  printf("\n\nEnter your choice:\n1.Insert beginning\n2.Insert End\n3.Delete End\n4.Display\n");
+  printf("\n===============================\nEnter your choice:\n1.Insert beginning\n2.Insert End\n3.Delete End\n4.Delete First\n5.Display\n6.Exit\n===============================\n\n");
 
   scanf("%d", &ch);
 
@@ -136,7 +155,8 @@ int main()
       case 1: insert_beg(); break;
       case 2: insert_end(); break;
       case 3: deleteend(); break;
-      case 4: display(); break;
+      case 4: deletefirst(); break;
+      case 5: display(); break;
       default: exit(0);
     }
     }while(1);
