@@ -140,16 +140,12 @@ while(pointer!=NULL){
 
 
 
-int main()
+main()
 {
     int ch;
     do{
   printf("\n===============================\nEnter your choice:\n1.Insert beginning\n2.Insert End\n3.Delete End\n4.Delete First\n5.Display\n6.Exit\n===============================\n\n");
-
   scanf("%d", &ch);
-
-
-
       switch(ch)
     {
       case 1: insert_beg(); break;
