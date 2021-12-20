@@ -1,0 +1,222 @@
+#include <stdio.h>
+#include <stdlib.h>
+//creation of structure node of the linked list
+struct node
+{
+    int data;
+    struct node *next;
+
+};
+struct node *head1 = NULL;
+struct node *head2 = NULL;
+struct node *head3 = NULL;
+void insertbeg1()
+{
+    struct node *newnode;
+    int item;
+
+    newnode = (struct node *)malloc(sizeof(struct node)); //allocating memory to the new node
+
+    printf("Enter the element tat you would like to insert at the end of the Linked List :");
+    scanf("%d", &item);
+    //accepting user values
+
+    newnode->data = item;
+    newnode->next = NULL;
+
+    if(head1 == NULL)//if no node prior
+        head1 = newnode;//created node becomes first
+    else{
+        newnode->next = head1;
+        head1 = newnode;//slides the head pointer over to the newly created node and rest of the list is attached after the new node
+    }
+}
+
+
+void insertbeg2()
+{
+    struct node *newnode;
+    int item;
+
+    newnode = (struct node *)malloc(sizeof(struct node)); //allocating memory to the new node
+
+    printf("Enter the element tat you would like to insert at the end of the Linked List :");
+    scanf("%d", &item);
+    //accepting user values
+
+    newnode->data = item;
+    newnode->next = NULL;
+
+    if(head2 == NULL)//if no node prior
+        head2 = newnode;//created node becomes first
+    else{
+        newnode->next = head2;
+        head2 = newnode;//slides the head pointer over to the newly created node and rest of the list is attached after the new node
+    }
+}
+
+void displaytwo()
+{
+    printf("Elements are : ");
+
+    struct node *temp2;
+    temp2 = head2;
+    while(temp2!=NULL)
+    {
+        printf("\t%d", temp2->data);
+        temp2 = temp2->next;
+    }
+    printf("\n");
+}
+
+void displayone()
+{
+    printf("Elements are : ");
+
+    struct node *temp1;
+    temp1 = head1;
+    while(temp1!=NULL)
+    {
+        printf("\t%d", temp1->data);
+        temp1 = temp1->next;
+    }
+    printf("\n");
+}
+void displaythree()
+{
+    printf("Elements are : ");
+
+    struct node *temp3;
+    temp3 = head3;
+    while(temp3!=NULL)
+    {
+        printf("\t%d", temp3->data);
+        temp3 = temp3->next;
+    }
+    printf("\n");
+}
+
+
+void concatone()
+{   struct node * temp1, * temp2;
+    temp1 = head1;
+    temp2 = head2;
+    while(temp1->next != NULL)
+        temp1 = temp1->next;
+
+    temp1->next = temp2;
+
+}
+
+
+void mergesort()
+{
+    struct node *t1, *t2, *newnode, * current;
+    t1 = head1;
+    t2 = head2;
+    newnode = (struct node *) malloc (sizeof(struct node));
+    newnode->next = NULL;
+    while(t1!= NULL && t2 != NULL)
+    {   newnode = (struct node *) malloc (sizeof(struct node));
+     newnode->next = NULL;
+        if(t1->data<t2->data)
+        {
+            newnode->data = t1 -> data;
+            t1 = t1->next;
+
+        }
+        else {
+            newnode ->data = t2->data;
+            t2= t2->next;
+        }
+        if(head3 == NULL)
+        {
+            head3 = newnode;
+            current = newnode;
+        }
+        else {
+            current->next = newnode;
+            current = newnode;
+        }
+
+
+    }
+
+
+    if(t1 == NULL)
+    {
+        while(t2!= NULL)
+        {   newnode = (struct node *) malloc (sizeof(struct node));
+            newnode->next = NULL;
+            newnode->data = t2->data;
+            if(head3 == NULL)
+            {
+                head3 = newnode;
+                current = newnode;
+            }
+            else{
+                current -> next = newnode;
+                current = newnode;
+            }
+            t2 = t2->next;
+        }
+
+    }
+
+    else if(t2 == NULL)
+    {
+        while(t1!= NULL)
+        {
+            newnode->data = t1->data;
+            if(head3 == NULL)
+            {
+                head3 = newnode;
+                current = newnode;
+            }
+            else{
+                current -> next = newnode;
+                current = newnode;
+            }
+            t1 = t1->next;
+        }
+
+
+    }
+
+    current->next = NULL;
+}
+
+void main()
+{
+
+    int ch;
+
+    do{
+
+        printf("===========================\nEnter your choice: \n1.INSERT FIRST LIST\n2.INSERT SECOND LIST\n3.DSPLAY LIST ONE\n4.DISPLAY LIST TWO\n5.CONCAT.\n6.MERGE SORT\n7.DISPLAY LIST THREE\n8.EXIT\n===========================\n");
+        scanf("%d", &ch);
+
+        switch(ch)
+        {
+        case 1: insertbeg1(); break;
+        case 2: insertbeg2(); break;
+        case 3: displayone(); break;
+        case 4: displaytwo(); break;
+        case 5: concatone(); break;
+        case 6: mergesort(); break;
+        case 7: displaythree(); break;
+        default: exit(0);
+
+
+        }
+
+    }while(1);
+
+
+}
+
+
+
+
+
+
