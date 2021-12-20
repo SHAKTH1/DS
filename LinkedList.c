@@ -255,6 +255,35 @@ void display()
 }
 
 
+void reverse()
+{
+    struct node * prev, * temp, * next2;
+    if(head == NULL)
+        printf("There is no list to be reversed bro");
+    else if(head->next == NULL)
+        printf("There is only one element in the list, hence, reverse not possible bro");
+
+
+
+    else{
+        temp = head;
+        while(temp != NULL)
+            {
+                next2 = temp->next;
+                temp->next = prev;
+                prev = temp;
+                temp = next2;
+            }
+
+            head->next = NULL;
+            head = prev;
+
+    }
+
+}
+
+
+
 
 void main()
 {
@@ -262,7 +291,7 @@ void main()
 
     do{
 
-        printf("===========================\nEnter your choice: \n1.INSERT AT THE BEGINNING\n2.INSERT AT THE END\n3.DELETE FIRST ELEMENT\n4.DELETE LAST ELEMENT\n5.DISPLAY\n6.INSERT IN BW\n7.DELETE SELECTED ELEMENT\n8.EXIT\n===========================\n");
+        printf("===========================\nEnter your choice: \n1.INSERT AT THE BEGINNING\n2.INSERT AT THE END\n3.DELETE FIRST ELEMENT\n4.DELETE LAST ELEMENT\n5.DISPLAY\n6.INSERT IN BW\n7.DELETE SELECTED ELEMENT\n8.REVERSE\n9.EXIT\n===========================\n");
         scanf("%d", &ch);
 
         switch(ch)
@@ -274,6 +303,7 @@ void main()
         case 5: display(); break;
         case 6: insert_btw(); break;
         case 7: delete_btw(); break;
+        case 8: reverse(); break;
         default: exit(0);
 
 
@@ -282,4 +312,3 @@ void main()
     }while(1);
 
 }
-
