@@ -1,0 +1,150 @@
+#include<stdio.h>
+#include<stdlib.h>
+struct node
+{
+    struct node *prev;
+    struct node *next;
+    int data;
+};
+struct node *head;
+
+void insertion_before();
+void deletion_specified();
+void display();
+
+void main ()
+{
+int choice =0;
+    while(choice != 4)
+    {
+        printf("\n===============================================\n");
+        printf("\n1.Insert before a given element\n2.Delete the node after the given data\n3.Show\n4.Exit\n");
+        printf("\nEnter your choice?\n");
+        scanf("\n%d",&choice);
+        switch(choice)
+        {
+            case 1:
+            insertion_before();
+            break;
+            case 2:
+            deletion_specified();
+            break;
+            case 3:
+            display();
+            break;
+            case 4:
+            exit(0);
+            break;
+            default:
+            printf("Please enter valid choice..");
+        }
+    }
+}
+
+void insertion_before()
+{   struct node * newnode, * temp;
+    temp = head;
+    newnode = (struct node *)malloc(sizeof(struct node));
+    if(head == NULL)
+    {
+        printf("There is no element in the list,Enter the element to create one: ");
+        scanf("%d", &newnode->data);
+        head = newnode;
+        head->prev = NULL;
+        head->next = NULL;
+    }
+    else
+    {
+        printf("\nEnter the element before which you want to enter the new node : ");
+        int ele;
+        scanf("%d", &ele);
+
+        while(temp->data!=ele)
+        {
+            if(temp!=NULL)
+            {
+            temp = temp->next;
+            }
+            if(temp == NULL)
+            {
+                break;
+
+            }
+
+        }
+        if(temp == NULL)
+        {
+            printf("The given element does not exist in the list!");
+
+        }
+        else{
+
+
+            printf("\nEnter the data of the new node! : ");
+            scanf("%d", &newnode->data);
+            newnode->prev = temp->prev;
+            newnode->next = temp;
+
+            if(temp == head)
+            {
+                head = newnode;
+                temp->prev = newnode;
+                return;
+            }
+
+            temp->prev->next  = newnode;
+
+            temp->prev = newnode;
+
+
+        }
+
+
+
+
+    }
+
+}
+void deletion_specified()
+{
+    struct node *temp;
+    int ele;
+    printf("\n Enter the data which is to be deleted : ");
+    scanf("%d", &ele);
+    temp = head;
+    while(temp -> data != ele)
+    {
+
+        if(temp == NULL)
+        {
+            break;
+        }
+
+        temp = temp -> next;
+    }
+
+
+    if(temp == NULL)
+    {
+        printf("\nelement not found\n");
+    }
+    else
+    {
+
+        temp->prev->next = temp->next;
+        temp->next->prev = temp->prev;
+
+        printf("\nNode deleted\n");
+    }
+}
+void display()
+{
+    struct node *ptr;
+    printf("\n printing values...\n");
+    ptr = head;
+    while(ptr != NULL)
+    {
+        printf("%d\n",ptr->data);
+        ptr=ptr->next;
+    }
+}
